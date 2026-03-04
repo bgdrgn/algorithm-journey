@@ -11,6 +11,8 @@ public class Complexity {
 			return;
 		}
 		int n = arr.length;
+		// 冒泡排序的归位性
+		// end：每轮排序的右边界（初始为最后一个元素索引），模拟外层循环的轮数
 		int end = n - 1, i = 0;
 		while (end > 0) {
 			if (arr[i] > arr[i + 1]) {

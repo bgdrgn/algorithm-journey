@@ -47,14 +47,29 @@ public class BitOperationAddMinusMultiplyDivide {
 
 	public static int add(int a, int b) {
 		int ans = a;
+		// 当进位不为0时继续循环
 		while (b != 0) {
 			// ans : a和b无进位相加的结果
 			ans = a ^ b;
 			// b : a和b相加时的进位信息
 			b = (a & b) << 1;
+			// 不能合并是因为 b = (a & b) << 1;依赖于“未被修改的 a”
 			a = ans;
 		}
 		return ans;
+	}
+
+	public int add_yy(int a, int b) { // SolutionO65
+		// 当进位为 0 时跳出
+		while (b != 0) {
+			// c = 进位
+			int c = (a & b) << 1;
+			// a = 非进位和
+			a ^= b;
+			// b = 进位
+			b = c;
+		}
+		return a;
 	}
 
 	public static int minus(int a, int b) {
